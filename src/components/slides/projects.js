@@ -5,16 +5,22 @@ import { Card, Icon, Image, Label, Button } from "semantic-ui-react";
 import { PROJECTS } from "../../assets/personal-info";
 
 const FlagLabel = props => {
-  let flagLabel;
   switch (props.flag) {
     case "personal":
-      flagLabel = <Label>Personal Project</Label>;
-      break;
+      return (
+        <span style={{ float: "left", display: "block" }}>
+          <Label>Personal Project</Label>
+        </span>
+      );        
     case "inProgress":
-      flagLabel = <Label color="red">In Progress</Label>;
-      break;
+      return (
+        <span style={{ float: "left", display: "block" }}>
+          <Label color='red'>In progress</Label>
+        </span>
+      );
+    default:
+      return null;
   }
-  return <span style={{ float: "left", display: "block" }}>{flagLabel}</span>;
 };
 
 const GithubSection = props => {
@@ -36,11 +42,15 @@ const GithubSection = props => {
 const ProjectCard = props => {
   return (
     <Card>
-      <Image src={props.imageURL} />
-
       <Card.Content>
-        <Card.Header>{props.name}</Card.Header>
-        <Card.Description>{props.description}</Card.Description>
+        <Card.Header>
+          <h3>{props.name}</h3>
+        </Card.Header>
+        <Image className='project-image' fluid src={props.imageURL} />
+
+        <Card.Description>
+          <p>{props.description}</p>
+        </Card.Description>
       </Card.Content>
 
       {props.githubURL && <GithubSection url={props.githubURL} />}

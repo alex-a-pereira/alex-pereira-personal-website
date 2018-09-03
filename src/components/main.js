@@ -2,19 +2,26 @@
 import React, { Component } from "react";
 import { Grid } from "semantic-ui-react";
 
-// Components
+// COMPONENTS
 import MainSlide from "./main-slide";
-//    Slides
+//  Slides
 import IntroContent from "./slides/intro";
 import {
   EducationContent,
   ExperienceContent
 } from "./slides/education-experience";
-import AboutMeContent from "./slides/about";
+import AboutMeContent from "./slides/about/about";
 import ProjectContent from "./slides/projects";
-import ContactContent from "./slides/contact";
-//    SideBar
-import Sidebar from "./sidebar/sidebar";
+import ContactContent from "./slides/contact/contact";
+// SideBar and Ref Constants
+import Sidebar, {
+  INTRO_REF,
+  EDU_REF,
+  EXP_REF,
+  ABOUT_REF,
+  PROJECT_REF,
+  CONTACT_REF
+} from "./sidebar/sidebar";
 
 // width of sidebar wrapper is 222 - 210 (menu) + 12 (paddingRight)
 const SIDEBAR_WIDTH = 222;
@@ -22,6 +29,7 @@ const SIDEBAR_WIDTH = 222;
 export default class MainGrid extends Component {
   constructor(props) {
     super(props);
+    // refs for menu scrolling
     this.introRef = React.createRef();
     this.eduRef = React.createRef();
     this.expRef = React.createRef();
@@ -33,30 +41,32 @@ export default class MainGrid extends Component {
     this.handleScrollToElement = this.handleScrollToElement.bind(this);
   }
 
-  handleScrollToElement(scrollingId) {
+  handleScrollToElement(name) {
     let elementToScrollTo;
 
-    switch (scrollingId) {
-      case "intro":
+    switch (name) {
+      case INTRO_REF:
         elementToScrollTo = this.introRef;
         break;
-      case "edu":
+      case EDU_REF:
         elementToScrollTo = this.eduRef;
         break;
-      case "exp":
+      case EXP_REF:
         elementToScrollTo = this.expRef;
         break;
-      case "about":
+      case ABOUT_REF:
         elementToScrollTo = this.aboutRef;
         break;
-      case "project":
+      case PROJECT_REF:
         elementToScrollTo = this.projectRef;
         break;
-      case "contact":
+      case CONTACT_REF:
         elementToScrollTo = this.contactRef;
         break;
       default:
-        console.log("no scrollingId was passed");
+        console.log(
+          "An item was clicked, but no Ref was passed to MainGrid's function"
+        );
     }
 
     elementToScrollTo.current.scrollIntoView({
@@ -116,7 +126,7 @@ export default class MainGrid extends Component {
             </MainSlide>
 
             <MainSlide
-              className="main-cell-last"
+              className="main-slide-last"
               ref={this.contactRef}
               heading="Contact me"
               iconName="phone"

@@ -20,7 +20,6 @@ const IntroContent = props => {
       <Image
         className="intro-image"
         fluid
-        rounded
         src={PERSONAL_INFO.bannerImageURL}
         centered
       />
@@ -75,7 +74,7 @@ const IntroContent = props => {
               <List.Description>View my contact information</List.Description>
             </List.Content>
             <List.Content floated="right">
-              <Button scrollingId="name" icon onClick={props.scrollFunction}>
+              <Button icon onClick={props.scrollFunction}>
                 <Icon size="large" name="phone" />
                 <Icon size="large" name="mail" />
                 <Icon size="large" name="comment alternate" />

@@ -2,11 +2,13 @@
 import React from "react";
 import { Grid } from "semantic-ui-react";
 
+
+
 const ContentRow = props => {
     return (
       <Grid stackable>
         <Grid.Row>
-          <Grid.Column width={7}>
+          <Grid.Column width={7}> 
             {props.leftContent}
           </Grid.Column>
           <Grid.Column width={9}>

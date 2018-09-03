@@ -142,3 +142,5 @@ export const PROJECTS = {
     labelLanguage: "language"
   }
 };
+
+export const API_ROOT_URL = "GOOGLE.COM/API";
